@@ -1,0 +1,29 @@
+# Portfolio Website Walkthrough
+
+## Overview
+I have successfully cloned the portfolio website and customized it with your personal details (Kishor Gogoi).
+The project is built with **Vite + React + Tailwind CSS**.
+
+## Design & Features
+- **Visuals**: Replicated the dark "premium" theme with custom gradients and animations.
+- **Components**:
+    - **Navbar**: Responsive with mobile menu and smooth scroll links.
+    - **Hero**: Dynamic text typing animation and "glow" effects.
+    - **About**: Custom education and bio section.
+    - **Skills**: Grid layout with hover effects, using specific icons for your tech stack.
+    - **Projects**: Card layout highlighting your automation projects.
+    - **Contact**: Functional-looking form and contact details.
+
+## Verification
+- **Build**: Successfully built for production (`npm run build`).
+- **Styles**: Tailwind Configured with extracted colors (`#020617` background, `#06b6d4` cyan accent).
+- **Icons**: Fixed generic/missing icons to ensure stability.
+
+## How to Run
+To preview the website locally:
+
+```bash
+npm run dev
+```
+
+Open the link provided in the terminal (usually `http://localhost:5173`).

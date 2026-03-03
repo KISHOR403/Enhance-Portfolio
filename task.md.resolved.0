@@ -1,0 +1,23 @@
+# Portfolio Website Clone Task List
+
+- [ ] Analyze target website <!-- id: 0 -->
+    - [ ] Inspect Homepage Design <!-- id: 1 -->
+    - [ ] Identify Colors, Fonts, and Assets <!-- id: 2 -->
+- [ ] Planning <!-- id: 3 -->
+    - [ ] Create Implementation Plan <!-- id: 4 -->
+    - [ ] Select Tech Stack (Vite + React recommended) <!-- id: 5 -->
+- [ ] Setup Project <!-- id: 6 -->
+    - [ ] Initialize Vite Project <!-- id: 7 -->
+    - [ ] Install dependencies (Tailwind CSS, Framer Motion for animations if needed) <!-- id: 8 -->
+- [ ] Implementation <!-- id: 9 -->
+    - [ ] Setup Project Structure <!-- id: 10 -->
+    - [ ] Implement Navbar <!-- id: 11 -->
+    - [ ] Implement Hero Section <!-- id: 12 -->
+    - [ ] Implement About Section <!-- id: 13 -->
+    - [ ] Implement Projects Section <!-- id: 14 -->
+    - [ ] Implement Skills/Experience Section <!-- id: 15 -->
+    - [ ] Implement Contact Section <!-- id: 16 -->
+    - [ ] Implement Footer <!-- id: 17 -->
+- [ ] Verification <!-- id: 18 -->
+    - [ ] Visual Comparison <!-- id: 19 -->
+    - [ ] Responsive Check <!-- id: 20 -->

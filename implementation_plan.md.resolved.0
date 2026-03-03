@@ -1,0 +1,66 @@
+# Implementation Plan - Portfolio Website Clone
+
+## Goal Description
+Clone the portfolio website `https://vanshmadaan-dev.netlify.app/` ("same to same") using a modern tech stack.
+The target site is a single-page React application using Tailwind CSS.
+We will replicate the visual design, animations, and content structure.
+
+## User Review Required
+> [!IMPORTANT]
+> Since the visual assets (images, logos) cannot be scraped directly due to tool limitations, we will use placeholders or generic developer-themed assets initially.
+> **Please provide any specific images (profile picture, project screenshots) you want to include.**
+
+## Proposed Changes
+
+### Tech Stack
+- **Framework**: React (Vite)
+- **Styling**: Tailwind CSS
+- **Fonts**: Fredoka (Headings/Accents), Poppins (Body)
+- **Icons**: React Icons (Fa, Fi, Si sets)
+
+### Global Styles
+#### [NEW] [index.css](file:///C:/Users/User/.gemini/antigravity/brain/dafc4740-7aea-4d90-947e-0c2ac4f1505c/src/index.css)
+- Import Google Fonts: Fredoka and Poppins.
+- Define custom Tailwind color palette extracted from the target site:
+  - Backgrounds: `#020617`, `#0b0f17`, `#0d1117`
+  - Accents: `#ff7a7a` (Red), `#06b6d4` (Cyan), `#22c55e` (Green)
+- Add global resets and animations (spin, ping, pulse).
+
+### Components
+
+#### [NEW] [Navbar.jsx](file:///C:/Users/User/.gemini/antigravity/brain/dafc4740-7aea-4d90-947e-0c2ac4f1505c/src/components/Navbar.jsx)
+- Responsive navigation bar.
+- Links: Home, About, Projects, Experience, Contact.
+
+#### [NEW] [Hero.jsx](file:///C:/Users/User/.gemini/antigravity/brain/dafc4740-7aea-4d90-947e-0c2ac4f1505c/src/components/Hero.jsx)
+- Greeting and Introduction.
+- Call to Action ("Resume", "Contact").
+- Dynamic text animations.
+
+#### [NEW] [About.jsx](file:///C:/Users/User/.gemini/antigravity/brain/dafc4740-7aea-4d90-947e-0c2ac4f1505c/src/components/About.jsx)
+- "About Me" text.
+- Profile image placeholder.
+
+#### [NEW] [Skills.jsx](file:///C:/Users/User/.gemini/antigravity/brain/dafc4740-7aea-4d90-947e-0c2ac4f1505c/src/components/Skills.jsx)
+- Grid of skill icons (Java, React, Node, etc.).
+
+#### [NEW] [Projects.jsx](file:///C:/Users/User/.gemini/antigravity/brain/dafc4740-7aea-4d90-947e-0c2ac4f1505c/src/components/Projects.jsx)
+- Card layout for projects.
+- Hover effects found in the CSS (scale, shadow).
+
+#### [NEW] [Contact.jsx](file:///C:/Users/User/.gemini/antigravity/brain/dafc4740-7aea-4d90-947e-0c2ac4f1505c/src/components/Contact.jsx)
+- Contact form and social links.
+
+#### [NEW] [Footer.jsx](file:///C:/Users/User/.gemini/antigravity/brain/dafc4740-7aea-4d90-947e-0c2ac4f1505c/src/components/Footer.jsx)
+- Copyright and social icons.
+
+## Verification Plan
+
+### Automated Tests
+- Build verification: `npm run build` to ensure no errors.
+- Linting: `npm run lint`.
+
+### Manual Verification
+- Visual inspection against the target URL (using side-by-side comparison).
+- Responsive testing (Mobile view check).
+- Verify hover states and animations match the "premium" feel requested.
