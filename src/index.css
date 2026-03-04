@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@100;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Outfit:wght@100..900&family=Poppins:wght@100;300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -73,5 +73,23 @@
 
   .animate-shimmer {
     animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes liquid {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-liquid {
+    animation: liquid 4s ease infinite;
   }
 }

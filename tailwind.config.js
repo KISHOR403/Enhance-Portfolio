@@ -24,6 +24,7 @@ export default {
             fontFamily: {
                 heading: ['Fredoka', 'sans-serif'],
                 body: ['Poppins', 'sans-serif'],
+                outfit: ['Outfit', 'sans-serif'],
             }
         },
     },

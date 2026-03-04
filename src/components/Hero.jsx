@@ -30,7 +30,7 @@ const Hero = ({ showIntro }) => {
                                 </div>
 
                                 <motion.h1
-                                    className="text-5xl md:text-7xl font-heading font-bold text-dark dark:text-white mb-4 leading-tight transition-colors"
+                                    className="text-5xl md:text-7xl font-outfit font-bold text-dark dark:text-white mb-4 leading-tight transition-colors"
                                     initial="hidden"
                                     animate="visible"
                                     variants={{
@@ -43,9 +43,9 @@ const Hero = ({ showIntro }) => {
                                         },
                                     }}
                                 >
-                                    {/* Line 1: Hi, I'm Kishor */}
+                                    {/* Line 1: I am Kishor */}
                                     <span className="block">
-                                        {Array.from("Hi, I'm ").map((char, index) => (
+                                        {Array.from("I am ").map((char, index) => (
                                             <motion.span
                                                 key={`char-${index}`}
                                                 variants={{
@@ -56,24 +56,31 @@ const Hero = ({ showIntro }) => {
                                                 {char === " " ? "\u00A0" : char}
                                             </motion.span>
                                         ))}
-                                        <span className="text-sky inline-block">
-                                            {Array.from("Kishor").map((char, index) => (
-                                                <motion.span
-                                                    key={`name-char-${index}`}
-                                                    variants={{
-                                                        hidden: { opacity: 0, y: 10 },
-                                                        visible: { opacity: 1, y: 0 },
-                                                    }}
-                                                >
-                                                    {char}
-                                                </motion.span>
-                                            ))}
+                                        <span className="inline-block relative group">
+                                            {/* Glowing aura effect */}
+                                            <span className="absolute -inset-1 bg-gradient-to-r from-[#6366f1] to-[#ec4899] rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-500"></span>
+
+                                            {/* Gradient Text */}
+                                            <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#ec4899] bg-[length:200%_auto] animate-liquid inline-block drop-shadow-md font-outfit font-black pr-2 transition-all duration-300 hover:tracking-wide hover:scale-[1.02] cursor-default">
+                                                {Array.from("Kishor").map((char, index) => (
+                                                    <motion.span
+                                                        key={`name-char-${index}`}
+                                                        className="inline-block"
+                                                        variants={{
+                                                            hidden: { opacity: 0, y: 10 },
+                                                            visible: { opacity: 1, y: 0 },
+                                                        }}
+                                                    >
+                                                        {char}
+                                                    </motion.span>
+                                                ))}
+                                            </span>
                                         </span>
                                     </span>
 
                                     {/* Line 2: Gogoi - Delayed start to wait for Line 1 */}
                                     <motion.span
-                                        className="text-orange-500 block"
+                                        className="block group relative w-fit"
                                         variants={{
                                             hidden: { opacity: 1 }, // Container visible, children hidden
                                             visible: {
@@ -85,17 +92,24 @@ const Hero = ({ showIntro }) => {
                                             }
                                         }}
                                     >
-                                        {Array.from("Gogoi").map((char, index) => (
-                                            <motion.span
-                                                key={`lastname-char-${index}`}
-                                                variants={{
-                                                    hidden: { opacity: 0, y: 10 },
-                                                    visible: { opacity: 1, y: 0 },
-                                                }}
-                                            >
-                                                {char}
-                                            </motion.span>
-                                        ))}
+                                        {/* Glowing aura effect */}
+                                        <span className="absolute -inset-1 bg-gradient-to-r from-[#0ea5e9] to-[#10b981] rounded-lg blur opacity-20 group-hover:opacity-40 transition duration-500"></span>
+
+                                        {/* Gradient Text */}
+                                        <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#0ea5e9] via-[#10b981] to-[#0ea5e9] bg-[length:200%_auto] animate-liquid block font-outfit font-black drop-shadow-md pb-2 transition-all duration-300 hover:tracking-wide hover:scale-[1.02] cursor-default">
+                                            {Array.from("Gogoi").map((char, index) => (
+                                                <motion.span
+                                                    key={`lastname-char-${index}`}
+                                                    className="inline-block"
+                                                    variants={{
+                                                        hidden: { opacity: 0, y: 10 },
+                                                        visible: { opacity: 1, y: 0 },
+                                                    }}
+                                                >
+                                                    {char}
+                                                </motion.span>
+                                            ))}
+                                        </span>
                                     </motion.span>
                                 </motion.h1>
 
