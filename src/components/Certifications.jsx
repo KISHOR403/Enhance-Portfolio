@@ -199,6 +199,7 @@ const Certifications = () => {
                                         : `shadow-lg ${!isCenter ? 'hover:bg-white dark:hover:bg-gray-800/60' : ''}`
                                         }`}
                                     innerClassName="h-full p-6 bg-white/90 dark:bg-gray-900/40 backdrop-blur-md border border-white/50 dark:border-white/10"
+                                    gradient="hidden"
                                 >
                                     {/* Ambient Glow */}
                                     <div className={`

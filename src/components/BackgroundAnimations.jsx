@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const BackgroundAnimations = () => {
     const canvasRef = useRef(null);
-    const [mouse, setMouse] = useState({ x: null, y: null, radius: 150 });
+    const mouseRef = useRef({ x: null, y: null, radius: 150 });
+    const scrollYRef = useRef(0);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -22,20 +23,33 @@ const BackgroundAnimations = () => {
 
         // Handle Mouse Movement
         const handleMouseMove = (event) => {
-            setMouse({
-                x: event.x,
-                y: event.y,
+            mouseRef.current = {
+                x: event.clientX,
+                y: event.clientY,
                 radius: 120 // Radius of interaction
-            });
+            };
         };
 
         const handleMouseLeave = () => {
-            setMouse({ x: null, y: null, radius: 120 });
-        }
+            mouseRef.current = { x: null, y: null, radius: 120 };
+        };
 
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseout', handleMouseLeave);
-        window.addEventListener('mouseleave', handleMouseLeave);
+        // Handle Parallax Scroll Effect
+        const handleScroll = () => {
+            const newScrollY = window.scrollY;
+            const deltaY = newScrollY - scrollYRef.current;
+            scrollYRef.current = newScrollY;
+
+            // Shift particles opposite to scroll direction for parallax
+            particlesArray.forEach((p) => {
+                p.y -= deltaY * 0.4;
+            });
+        };
+
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        window.addEventListener('mouseout', handleMouseLeave, { passive: true });
+        window.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+        window.addEventListener('scroll', handleScroll, { passive: true });
 
         // Particle Class
         class Particle {
@@ -46,8 +60,6 @@ const BackgroundAnimations = () => {
                 this.dy = dy;
                 this.size = size;
                 this.color = color;
-                this.baseX = this.x;
-                this.baseY = this.y;
                 this.density = (Math.random() * 30) + 1;
             }
 
@@ -63,23 +75,28 @@ const BackgroundAnimations = () => {
                 this.x += this.dx;
                 this.y += this.dy;
 
-                // Bounce off edges
-                if (this.x > canvas.width || this.x < 0) this.dx = -this.dx;
-                if (this.y > canvas.height || this.y < 0) this.dy = -this.dy;
+                // Wrap around edges instead of bouncing for a continuous flow, especially useful with the parallax
+                if (this.x > canvas.width + 50) this.x = -50;
+                else if (this.x < -50) this.x = canvas.width + 50;
+
+                if (this.y > canvas.height + 50) this.y = -50;
+                else if (this.y < -50) this.y = canvas.height + 50;
 
                 // Mouse interaction / Gravity well
-                if (mouse.x != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
+                const currentMouse = mouseRef.current;
+                if (currentMouse.x != null) {
+                    let dx = currentMouse.x - this.x;
+                    let dy = currentMouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let maxDistance = mouse.radius;
-                    let force = (maxDistance - distance) / maxDistance;
-                    let directionX = forceDirectionX * force * this.density;
-                    let directionY = forceDirectionY * force * this.density;
 
-                    if (distance < mouse.radius) {
+                    if (distance < currentMouse.radius) {
+                        let forceDirectionX = dx / distance;
+                        let forceDirectionY = dy / distance;
+                        let maxDistance = currentMouse.radius;
+                        let force = (maxDistance - distance) / maxDistance;
+                        let directionX = forceDirectionX * force * this.density;
+                        let directionY = forceDirectionY * force * this.density;
+
                         this.x -= directionX;
                         this.y -= directionY;
                     }
@@ -102,8 +119,8 @@ const BackgroundAnimations = () => {
 
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2.5) + 0.5;
-                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
                 let dx = (Math.random() - 0.5) * 1.5;
                 let dy = (Math.random() - 0.5) * 1.5;
                 let color = particleColors[Math.floor(Math.random() * particleColors.length)];
@@ -114,8 +131,8 @@ const BackgroundAnimations = () => {
 
         // Animation Loop
         const animate = () => {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            animationFrameId = requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
@@ -151,6 +168,8 @@ const BackgroundAnimations = () => {
             }
         };
 
+        // Initial setup
+        scrollYRef.current = window.scrollY;
         setCanvasSize();
         animate();
 
@@ -171,6 +190,7 @@ const BackgroundAnimations = () => {
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseout', handleMouseLeave);
             window.removeEventListener('mouseleave', handleMouseLeave);
+            window.removeEventListener('scroll', handleScroll);
             observer.disconnect();
             cancelAnimationFrame(animationFrameId);
         };
